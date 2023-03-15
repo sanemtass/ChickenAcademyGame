@@ -5,20 +5,24 @@ using UnityEngine;
 public class WarriorIncubator : MonoBehaviour
 {
     public Transform incubatorPoint;
+
     public Queue<GameObject> EggsOnIncubator = new Queue<GameObject>();
-    bool isIncubatorWorking=true;
-    bool canGiveEgg;
+
+    private bool isIncubatorWorking=true;
+    private bool canGiveEgg;
+
     public int incubatorEggLimit;
     public int incubatorSpawnTime;
     public static int tempEgg;
+
     public GameObject spawnPoint;
     public GameObject tempObject;
 
     private void Start()
     {
-        //StartCoroutine(WarriorChickenSpawn());
         StartCoroutine(GiveEgg());
     }
+
     private void Update()
     {
         incubatorEggLimit = UIManager.Instance.incubatorEggLimit;
@@ -29,6 +33,7 @@ public class WarriorIncubator : MonoBehaviour
             StopCoroutine(GiveEgg());
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -37,38 +42,22 @@ public class WarriorIncubator : MonoBehaviour
         }
     }
   
-    //IEnumerator WarriorChickenSpawn()
-    //{
-    //    //while (true)
-    //    //{
-    //    //    yield return new WaitForSeconds(2f);
-    //    //    if (EggsOnIncubator.Count > 0 && tempEgg > 0)
-    //    //    {
-    //    //        var Egg = EggsOnIncubator.Dequeue();
-                
-    //    //        Egg.transform.parent = GameObject.Find("Egg (UnityEngine.GameObject)").transform;
-    //    //        ObjectPooling.Instance.SetPoolObject(Egg, 1);
-    //    //        tempObject = ObjectPooling.Instance.GetPoolObject(2);
-    //    //        tempEgg--;
-    //    //    }
-    //    //}
-    //}
-     IEnumerator GiveEgg()
+    private IEnumerator GiveEgg()
     {
         while (true)
         {
             yield return new WaitForSeconds(2);
             if (canGiveEgg)
             {
-                if (isIncubatorWorking && PlayerEggStack.tempEgg > 0) //&& other.gameObject.GetComponent<PlayerEggStack>().hasStack
+                if (isIncubatorWorking && PlayerEggStack.tempEgg > 0) 
                 {
-                  
                     var Egg = ObjectPooling.Instance.GetPoolObject(1);
                     Egg.transform.position = new Vector3(incubatorPoint.position.x, 1f + (float)EggsOnIncubator.Count / 2, incubatorPoint.position.z);
                     EggsOnIncubator.Enqueue(Egg);
                     Egg.transform.parent = gameObject.transform;
                     PlayerEggStack.tempEgg--;
                     tempEgg++;
+
                     if (EggsOnIncubator.Count >= incubatorEggLimit)
                     {
                         isIncubatorWorking = false;
@@ -80,32 +69,26 @@ public class WarriorIncubator : MonoBehaviour
                 }
             }
         }
-        if (isIncubatorWorking && PlayerEggStack.tempEgg > 0) //&& other.gameObject.GetComponent<PlayerEggStack>().hasStack
+
+        if (isIncubatorWorking && PlayerEggStack.tempEgg > 0) 
         {
-           
             var Egg = ObjectPooling.Instance.GetPoolObject(1);
             Egg.transform.position = new Vector3(incubatorPoint.position.x, 1f + (float)EggsOnIncubator.Count / 2, incubatorPoint.position.z);
             EggsOnIncubator.Enqueue(Egg);
             Egg.transform.parent = gameObject.transform;
             PlayerEggStack.tempEgg--;
             tempEgg++;
+
             if (EggsOnIncubator.Count >= incubatorEggLimit)
             {
                 isIncubatorWorking = false;
             }
         }
+
         else if (EggsOnIncubator.Count < incubatorEggLimit)
         {
             isIncubatorWorking = true;
         }
     }
-    //private void FixedUpdate()
-    //{
-    //    if (tempEgg <= 0)
-    //    {
-    //        StopCoroutine(WarriorChickenSpawn());
-    //    }
-       
-    //}
 }
 

@@ -27,7 +27,6 @@ public class WormSetActiveFalse : MonoBehaviour
 
             if (canRunAway)
             {
-               // wormAnimationController.Inside();
                 yield return new WaitForSeconds(1.6f);
                 gameObject.SetActive(false);                
             }

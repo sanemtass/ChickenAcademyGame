@@ -26,8 +26,6 @@ public class PlayerHealthBehaviour : MonoBehaviour
             playerHealth.currentHealth = playerHealth.MaxHealth;
             GetComponent<Gun>().muzzleFlash.Stop();
         }
-
-        
     }
     
 }

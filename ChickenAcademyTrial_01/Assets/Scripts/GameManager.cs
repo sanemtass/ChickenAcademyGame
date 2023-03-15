@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public GameObject enemyGroup;
+
     public int xPos, zPos;
     public int enemyCount;
     
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(EnemyDrop());
     }
 
-    IEnumerator EnemyDrop()
+    private IEnumerator EnemyDrop()
     {
         while (enemyCount < 4)
         {

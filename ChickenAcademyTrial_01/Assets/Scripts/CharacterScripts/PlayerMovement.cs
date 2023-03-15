@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
         movementVector = new Vector3(horizontalMove, 0, verticalMove);
         movementVector = movementVector.normalized;
         Debug.Log(speed + "second");
-        //transform.Translate(movementVector);
 
         if (joystick.Horizontal != 0 || joystick.Vertical != 0)
         {
@@ -46,9 +45,10 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isMoving", false);
         }
-        rb.MovePosition(rb.position + movementVector * Time.deltaTime * speedParameter);
 
+        rb.MovePosition(rb.position + movementVector * Time.deltaTime * speedParameter);
     }
+
     private void FixedUpdate()
     {
         if (transform.position.x < district_1.transform.position.x)
@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector3(transform.position.x, transform.position.y, district_2.transform.position.z);
         }
     }
+
     public bool IsMoving()
     {
         return _isMoving;

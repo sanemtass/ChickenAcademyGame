@@ -11,7 +11,6 @@ public class WarriorChickenIncubation : MonoBehaviour
     private Coroutine generateRoutine;
 
     [SerializeField] private SpawnedChickensManager spawnedChickensManager;
-    //[SerializeField] private Transform warriorChickenPrefab;
 
     private void Start()
     {
@@ -49,7 +48,6 @@ public class WarriorChickenIncubation : MonoBehaviour
                 warriorIncubator.tempObject = ObjectPooling.Instance.GetPoolObject(2);
                 WarriorIncubator.tempEgg--;
 
-                //sadece eventi burada cagiracaksin.?
                 spawnedChickensManager.AddWarriorChickenList(warriorIncubator.tempObject.gameObject);
                 warriorIncubator.tempObject.transform.position = transform.position + Vector3.forward * 2;
                 warriorIncubator.tempObject.GetComponent<WarriorChicken>().MoveToPoint(waitingPoint);

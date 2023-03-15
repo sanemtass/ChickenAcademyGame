@@ -10447,9 +10447,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c8ebace09380b4095a8cd71c6ebb2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wormLimit: 0
   eggStackManager: {fileID: 0}
   animator: {fileID: 919132148955606429}
+  wormLimit: 0
   ate: 0
   eatAnim: 0
   mouth: {fileID: 6940608165188253176}
@@ -28047,7 +28047,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1938487676}
   m_Layer: 0
-  m_Name: Env
+  m_Name: MotherChickenPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34964,7 +34964,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &9158126647866195296
 MonoBehaviour:

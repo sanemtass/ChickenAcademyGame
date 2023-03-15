@@ -52,11 +52,6 @@ public class WarriorChicken : MonoBehaviour
     {
         destinationSetter.target = target;
 
-        if (warriorChickenState == WarriorChickenStates.Waiting)
-        {
-            //transform.LookAt(gameobj.transform.position);
-        }
-
         if (warriorChickenState == WarriorChickenStates.Fighting && findClosestEnemy.closestEnemy != null)
         {
             transform.LookAt(findClosestEnemy.closestEnemy.transform.position);

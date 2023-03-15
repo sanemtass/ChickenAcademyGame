@@ -2,29 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class PlayerCollision : MonoBehaviour
 {
     public static bool isWormCollecting = false;
 
     public static float targetProgress;
 
-    public int wormLimit;
     public EggStackManager eggStackManager;
-    Rigidbody rb;
 
     public Animator animator;
-
+    public int wormLimit;
     public bool ate;
     public bool eatAnim;
-
     public GameObject mouth;
     public GameObject wormHimself;
 
-    float distance;
-    float _distance;
-
-    bool eat;
+    private Rigidbody rb;
+    private bool eat;
+    private float distance;
+    private float _distance;
 
     private void Start()
     {
@@ -38,11 +34,14 @@ public class PlayerCollision : MonoBehaviour
     public void Update()
     {
         wormLimit = UIManager.Instance.playerWormStackLimit;
+
         if (!ate)
         {
             PlayerMovement.speed = 350;
         }
+
         WormCatch();
+        EatAnimTrue();
     }
 
     private void WormCatch()
@@ -57,8 +56,8 @@ public class PlayerCollision : MonoBehaviour
             try
             {
                 mouth.transform.Find("Head").gameObject.transform.parent = wormHimself.transform.Find("Worm_Rig_bake_v1").gameObject.transform.Find("Armature").
-            gameObject.transform.Find("SplinIK_3").gameObject.transform.Find("body").
-            gameObject.transform;
+                gameObject.transform.Find("SplinIK_3").gameObject.transform.Find("body").
+                gameObject.transform;
                 wormHimself.SetActive(false);
                 wormHimself = null;
                 var obj = ObjectPooling.Instance.GetPoolObject(4).gameObject;
@@ -67,7 +66,7 @@ public class PlayerCollision : MonoBehaviour
                 gameObject.transform.Rotate(Vector3.zero);
                 ate = false;
                 distance = 0;
-                PlayerCollision.targetProgress++;
+                targetProgress++;
                 eatAnim = false;
             }
             catch
@@ -77,23 +76,24 @@ public class PlayerCollision : MonoBehaviour
             PlayerMovement.speed = 350;
         }
     }
-    void eatAnimTrue()
+
+    private void EatAnimTrue()
     {
         eatAnim = true;
     }
+
     private void LateUpdate()
     {
         if (wormHimself != null)
         {
             _distance = Vector3.Distance(transform.position * 1000, wormHimself.transform.position * 1000);
+
             if (_distance > distance * 1000)
             {
-                //transform.Rotate(1, transform.rotation.y, transform.rotation.z);
                 PlayerMovement.speed = 100;
             }
             if (distance * 1000 > _distance)
             {
-                //transform.Rotate(-1, transform.rotation.y, transform.rotation.z);
                 PlayerMovement.speed = 350;
             }
         }
@@ -114,9 +114,11 @@ public class PlayerCollision : MonoBehaviour
         {
             eat = true;
         }
+
         if (other.gameObject.CompareTag("WormHead") && !ate && eatAnim)
         {
             wormHimself = other.gameObject.GetComponentInParent<WormLevel>().gameObject;
+
             if (wormHimself.GetComponent<WormLevel>().wormLevel <= CharacterLevelSystem._currentLevel && !ate)
             {
                 if (targetProgress <= wormLimit)
@@ -127,18 +129,21 @@ public class PlayerCollision : MonoBehaviour
                     animator.SetTrigger("idle");
                     eatAnim = false;
                 }
+
                 else
                 {
                     wormHimself = null;
                     PlayerMovement.speed = 350;
                 }
             }
+
             else
             {
                 PlayerMovement.speed = 350;
             }
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Worm") && targetProgress <= wormLimit) // upgrade ile target progress artacak.
@@ -158,8 +163,8 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-
         isWormCollecting = false;
+
         if (other.CompareTag("WormHead"))
         {
             PlayerMovement.speed = 350;
@@ -172,6 +177,7 @@ public class PlayerCollision : MonoBehaviour
             animator.SetTrigger("idle");
         }
     }
+
     public static void IncreaseTargetProgress()
     {
         targetProgress++;
