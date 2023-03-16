@@ -9,7 +9,7 @@ public class WarriorIncubator : MonoBehaviour
     public Queue<GameObject> EggsOnIncubator = new Queue<GameObject>();
 
     private bool isIncubatorWorking=true;
-    private bool canGiveEgg;
+    bool canGiveEgg;
 
     public int incubatorEggLimit;
     public int incubatorSpawnTime;
