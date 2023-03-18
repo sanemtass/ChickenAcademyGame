@@ -52,6 +52,7 @@ public class ObjectPooling : MonoBehaviour
             }
         }
     }
+
     public GameObject GetPoolObject(int objectType)
     {
         if (objectType >= pools.Length) return null;
@@ -70,13 +71,14 @@ public class ObjectPooling : MonoBehaviour
         }
         return obj;
     }
+
     public void SetPoolObject(GameObject pooledObject, int objectType)
     {
         if (objectType >= pools.Length) return;
         pools[objectType].PooledObjects.Enqueue(pooledObject);
-        //Debug.Log(pooledObject.transform.position);
         pooledObject.SetActive(false);
     }
+
     public void AddSizePool(float amount, int objectType)
     {
         for (int i = 0; i < amount; i++)

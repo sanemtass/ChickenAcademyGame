@@ -5,17 +5,17 @@ using UnityEngine;
 public class WormAnimationController : MonoBehaviour
 {
     public Animator anim;
-   
-  public  void Start()
+
+    public void Start()
     {
-        anim = GetComponent<Animator>();       
+        anim = GetComponent<Animator>();
     }
 
     public void Attack()
     {
         transform.LookAt(GameObject.Find("Player").transform.position);
         Debug.Log("Attack Else");
-        anim.SetBool("Attack1",true);
+        anim.SetBool("Attack1", true);
     }
 
 }

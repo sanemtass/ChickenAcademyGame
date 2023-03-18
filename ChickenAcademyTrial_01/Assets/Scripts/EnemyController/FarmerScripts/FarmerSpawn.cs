@@ -26,6 +26,7 @@ public class FarmerSpawn : MonoBehaviour
     }
     public float enemyFarmerSpawnTime;
     public float enemyFarmerSpawnRate;
+
     private void OnEnable()
     {
         instance = this;
@@ -38,17 +39,18 @@ public class FarmerSpawn : MonoBehaviour
   
     private void SpawnEnemy()
     {
-        var farmerEnemy = ObjectPooling.Instance.GetPoolObject(8);
+        var farmerEnemy = ObjectPooling.Instance.GetPoolObject(7);
         EnemyFarmer.Enqueue(farmerEnemy);
         farmerEnemy.transform.position = new Vector3(_spawnPoint.transform.position.x, _spawnPoint.transform.position.y, _spawnPoint.transform.position.z);
         isFarmerSpawned = true;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("ExitPoint"))
         {
             var farmerEnemy = EnemyFarmer.Dequeue();
-            ObjectPooling.Instance.SetPoolObject(farmerEnemy, 8);
+            ObjectPooling.Instance.SetPoolObject(farmerEnemy, 7);
             isFarmerSpawned = false;
         }
     }

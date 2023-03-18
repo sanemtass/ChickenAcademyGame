@@ -4,15 +4,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-
 public class RewardManager : MonoBehaviour
 {
     [SerializeField] private GameObject PileOfCoinParent;
-    //[SerializeField] private TextMeshProUGUI GoldCounter;
     [SerializeField] private Vector3[] InitialPos;
     [SerializeField] private Quaternion[] InitialRotation;
     [SerializeField] private int coinNo;
-    public int coinValue = 1; //upgrade ile arttirilacak.
+    public int coinValue = 1; 
     private static RewardManager instance = null;
     public int TotalGold;
     public static RewardManager Instance
@@ -26,25 +24,25 @@ public class RewardManager : MonoBehaviour
             return instance;
         }
     }
+
     private void OnEnable()
     {
         instance = this;
     }
+
     void Start()
     {
      
         InitialPos = new Vector3[coinNo];
         InitialRotation = new Quaternion[coinNo];
-        //GoldCounter.text = PlayerPrefs.GetInt("CountCoin").ToString();
         
-
-
         for (int i = 0; i < PileOfCoinParent.transform.childCount; i++)
         {
             InitialPos[i] = PileOfCoinParent.transform.GetChild(i).position;
             InitialRotation[i] = PileOfCoinParent.transform.GetChild(i).rotation;
         }
     }
+
     public void Update()
     {
         TotalGold = PlayerPrefs.GetInt("CountCoin")+1000;
@@ -59,13 +57,13 @@ public class RewardManager : MonoBehaviour
         }
     }
 
-
     public void RewardPileOfCoin(int noCoin)
     {
         Reset();
 
         var delay = 0f;
         PileOfCoinParent.SetActive(true);
+
         for (int i = 0; i < PileOfCoinParent.transform.childCount; i++)
         {
             PileOfCoinParent.transform.GetChild(i).DOScale(1f, .3f).SetDelay(delay).SetEase(Ease.OutBack);
@@ -80,11 +78,10 @@ public class RewardManager : MonoBehaviour
         }
 
         StartCoroutine(CountCoins(10));
-
     }
+
     IEnumerator CountCoins(int coinNo)
     {
-
         var timer = 0f;
         yield return new WaitForSeconds(.7f);
         for (int i = 0; i < coinNo; i++)

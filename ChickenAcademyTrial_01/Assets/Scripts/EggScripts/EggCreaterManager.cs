@@ -33,6 +33,7 @@ public class EggCreaterManager : MonoBehaviour
         DestroyEgg();
        
     }
+
     public int EggCount()
     {
         if (PlayerCollision.targetProgress >= 4)
@@ -42,6 +43,7 @@ public class EggCreaterManager : MonoBehaviour
         }
         return eggCount;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("WorkerChicken"))
@@ -59,16 +61,11 @@ public class EggCreaterManager : MonoBehaviour
                 }
                 eggCount = 0;
             }
-            //if (PlayerEggStack.Instance.isStacking)// Yumurta icerisine tasinacak.
-            //{
-            //    var Egg = Eggs.Dequeue();
-            //    ObjectPooling.Instance.SetPoolObject(Egg, 1);
-            //}
         }
     }
+
     public void DestroyEgg()
     {
-
         if (EggsMother.Count > 0 && PlayerEggStack.Instance.eggCollected == true)
         {
             Egg = EggsMother.Dequeue();
@@ -77,17 +74,15 @@ public class EggCreaterManager : MonoBehaviour
         }
 
     }
+
     public void SpawnEgg()
     {
         if (isCreaterWorking)
         {
             Egg = ObjectPooling.Instance.GetPoolObject(1);
             Egg.transform.position = new Vector3(spawnPoint.transform.position.x, spawnPoint.transform.position.y, spawnPoint.transform.position.z);
-            //eggCount--;
             tempEgg++;
-          
-           
-            // yumurtanin  olusacagi pozisyon revize edilecek.           
+                
             EggsMother.Enqueue(Egg);
 
 
@@ -96,6 +91,7 @@ public class EggCreaterManager : MonoBehaviour
                 isCreaterWorking = false;
             }
         }
+
         if (EggsMother.Count < eggLimit)
         {
             isCreaterWorking = true;

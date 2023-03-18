@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class EnemyFarmer : MonoBehaviour
 {
-
     public bool getChicken = false;
-
 }

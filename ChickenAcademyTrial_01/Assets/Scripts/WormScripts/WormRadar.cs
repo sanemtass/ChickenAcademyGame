@@ -12,14 +12,15 @@ public class WormRadar : MonoBehaviour
     public AIDestinationSetter aiDes;
     public WorkerChicken workerChicken;
     public GameObject mother;
-    void Start()
+
+    private void Start()
     {
         closestWorm = null;
         targetedWorm = false;
     }
+
     private void LateUpdate()
     {
-        //obj.transform.position = closestWorm.position;
         if (!workerChicken.getWorm)
         {
             closestWorm = getClosestWorm();
@@ -30,9 +31,8 @@ public class WormRadar : MonoBehaviour
             aiDes.target = mother.transform;
         }
         
-        
-        //transform.position = closestWorm.transform.position;
     }
+
     public Transform getClosestWorm()
     {
         spawnedWorms = GameObject.FindGameObjectsWithTag("Worm");
@@ -50,5 +50,5 @@ public class WormRadar : MonoBehaviour
             }
         }
         return trans;
-    } //(1,2,5)
+    } 
 }

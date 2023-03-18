@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SpawnedChickensManager : MonoBehaviour
 {
-
     private static SpawnedChickensManager instance = null;
     public static SpawnedChickensManager Instance
     {
@@ -17,6 +16,7 @@ public class SpawnedChickensManager : MonoBehaviour
             return instance;
         }
     }
+
     private void OnEnable()
     {
         instance = this;
@@ -31,9 +31,6 @@ public class SpawnedChickensManager : MonoBehaviour
 
     public Transform armyZone = null;
     public Vector3 warriorChickenSpawnEulerAngles;
-    public int maxWarriorChickenLimit = 10; //oyuna baslanilan savasci tavuk limitiyle degistirirsin.
-
-   
 
     private void Start()
     {

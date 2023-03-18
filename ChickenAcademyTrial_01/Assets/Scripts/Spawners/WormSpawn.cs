@@ -55,6 +55,7 @@ public class WormSpawn : MonoBehaviour
             }
         }
     }
+
     private void RespawnWorms()
     {
         foreach (var obj in ObjectPooling.Instance.pools[0].PooledObjects)

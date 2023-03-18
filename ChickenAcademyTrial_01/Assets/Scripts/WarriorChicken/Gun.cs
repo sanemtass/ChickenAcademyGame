@@ -13,7 +13,6 @@ public class Gun : MonoBehaviour
 
     public ParticleSystem muzzleFlash;
 
-
     [SerializeField] private float fireDistance;
     public RaycastHit hitInfo;
 
@@ -52,8 +51,5 @@ public class Gun : MonoBehaviour
         {
             Debug.DrawRay(attackPoint.position, attackPoint.TransformDirection(Vector3.forward) * 100f, Color.green); 
         }
-
     }
-
-
 }

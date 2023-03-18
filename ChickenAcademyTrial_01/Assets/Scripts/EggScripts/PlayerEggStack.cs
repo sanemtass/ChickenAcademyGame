@@ -24,10 +24,12 @@ public class PlayerEggStack : MonoBehaviour
             return instance;
         }
     }
+
     private void Start()
     {
         StartCoroutine(DestroyEggs());
     }
+
     public void Update()
     {
         eggStackLimit = UIManager.Instance.playerEggStackLimit;
@@ -44,10 +46,12 @@ public class PlayerEggStack : MonoBehaviour
             StopCoroutine(DestroyEggs());
         }
     }
+
     private void OnEnable()
     {
         instance = this;
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("EggCollectArea"))
@@ -67,16 +71,19 @@ public class PlayerEggStack : MonoBehaviour
                     isStacking = false;
                 }
             }
+
             else if (EggsOnPlayer.Count < eggStackLimit)
             {
                 isStacking = true;
             }
         }
+
         if (other.gameObject.CompareTag("WorkerIncubator")||other.gameObject.CompareTag("WarriorIncubator"))
         {
             onIncTrigger = true;
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("WorkerIncubator") || other.gameObject.CompareTag("WarriorIncubator"))
@@ -84,6 +91,7 @@ public class PlayerEggStack : MonoBehaviour
             onIncTrigger = false;
         }
     }
+
     IEnumerator DestroyEggs()
     {
         while (true)

@@ -9,6 +9,7 @@ public class FarmerCollision : MonoBehaviour
     FarmerSpawn farmerSpawn;
     public bool isCatched;
     FarmerStack farmerStack;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("WorkerChicken") && !isCatched)
@@ -16,16 +17,16 @@ public class FarmerCollision : MonoBehaviour
             tempWorkerChicken = other.gameObject;
             isCatched = true;
             isWorkerChickenTaken = true;
-            Debug.Log("Isci tavuga dokunuldu");
             ObjectPooling.Instance.SetPoolObject(other.gameObject, 3);
         }
+
         if (other.gameObject.CompareTag("ExitPoint"))
         {
             isCatched = false;
-            Debug.Log("Exit pointe ulasildi");
             isWorkerChickenTaken = false;
-            ObjectPooling.Instance.SetPoolObject(gameObject, 8);
+            ObjectPooling.Instance.SetPoolObject(gameObject, 7);
         }
+
         if (other.gameObject.CompareTag("Player") && isCatched)
         {
             if (tempWorkerChicken != null)

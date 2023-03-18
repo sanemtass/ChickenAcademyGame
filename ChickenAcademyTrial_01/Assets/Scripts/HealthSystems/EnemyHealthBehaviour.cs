@@ -20,15 +20,4 @@ public class EnemyHealthBehaviour : MonoBehaviour
     {
         enemyHealth.Die(enemy);
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag("Bullet"))
-    //    {
-    //        EnemyTakeDamage(10);
-    //        //Debug.Log(GameManager.Instance.enemyHealth.Health);
-    //        EnemyDie(this.gameObject);
-    //    }
-    //}
-
 }

@@ -31,6 +31,7 @@ public class PlayerCollision : MonoBehaviour
         wormHimself = null;
         ate = false;
     }
+
     public void Update()
     {
         wormLimit = UIManager.Instance.playerWormStackLimit;
@@ -110,7 +111,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Worm") && targetProgress <= wormLimit) // upgrade ile target progress artacak.
+        if (other.gameObject.CompareTag("Worm") && targetProgress <= wormLimit)
         {
             eat = true;
         }
@@ -146,7 +147,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("Worm") && targetProgress <= wormLimit) // upgrade ile target progress artacak.
+        if (other.gameObject.CompareTag("Worm") && targetProgress <= wormLimit)
         {
             eat = true;
         }

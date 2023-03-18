@@ -7,6 +7,7 @@ public class EggStackWorkerInc : MonoBehaviour
     public static int _currentEggStack = 0;
     public static int _maxEggStack = 10;
     public EggStackManager eggStackManager;
+
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -21,6 +22,7 @@ public class EggStackWorkerInc : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -28,6 +30,7 @@ public class EggStackWorkerInc : MonoBehaviour
             CancelInvoke();
         }
     }
+
     public void IncEggAdding()
     {
         for (int i = 0; i < eggStackManager.eggObjects.Count; i++)

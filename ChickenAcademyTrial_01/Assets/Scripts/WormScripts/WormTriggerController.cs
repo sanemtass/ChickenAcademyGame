@@ -8,21 +8,12 @@ public class WormTriggerController : MonoBehaviour
     float distance;
     public Animator animator;
     public GameObject body;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     private void FixedUpdate()
     {
         transform.position = mouth.transform.position;
-        
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("PlayerHead"))
@@ -35,6 +26,7 @@ public class WormTriggerController : MonoBehaviour
             }
         }
     }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("PlayerHead"))
@@ -42,6 +34,7 @@ public class WormTriggerController : MonoBehaviour
             distance = 0;
         }
     }
+
     public void Eat()
     {
         gameObject.transform.parent = mouth.transform;

@@ -8,6 +8,7 @@ public class FindClosestEnemy : MonoBehaviour
     public Transform closestEnemy;
    
     private GameObject[] spawnedEnemys;
+
     private void Start()
     {
         closestEnemy = null;
@@ -28,7 +29,6 @@ public class FindClosestEnemy : MonoBehaviour
             gameObject.GetComponent<AIPath>().endReachedDistance = 2.5f;
         }
     }
-
 
     public Transform GetClosestEnemy()
     {
@@ -54,5 +54,4 @@ public class FindClosestEnemy : MonoBehaviour
         }
         return trans;
     }
-
 }

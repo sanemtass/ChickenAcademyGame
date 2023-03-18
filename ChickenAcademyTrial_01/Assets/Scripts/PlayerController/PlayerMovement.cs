@@ -18,13 +18,14 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject district_1;
     public GameObject district_2;
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = gameObject.GetComponent<Animator>();
 
     }
-    void Update()
+
+    private void Update()
     {
         speedParameter = UIManager.Instance.playerSpeedParameter;
         Debug.Log(speed + "first");

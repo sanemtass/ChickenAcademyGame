@@ -12,13 +12,13 @@ public class WorkerIncubator : MonoBehaviour
     public int incubatorSpawnTime;
     public static int tempEgg;
     public GameObject spawnPoint;
-    //  public int stackCount = 6;
 
     private void Start()
     {
         StartCoroutine(WorkerChickenSpawn());
         StartCoroutine(GiveEgg());
     }
+
     private void Update()
     {
         incubatorEggLimit = UIManager.Instance.incubatorEggLimit;
@@ -29,16 +29,14 @@ public class WorkerIncubator : MonoBehaviour
             StopCoroutine(GiveEgg());
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             canGiveEgg = true;
-
         }
-
     }
-
 
     IEnumerator WorkerChickenSpawn()
     {
@@ -56,6 +54,7 @@ public class WorkerIncubator : MonoBehaviour
             }
         }
     }
+
     IEnumerator GiveEgg()
     {
         while (true)
@@ -63,9 +62,8 @@ public class WorkerIncubator : MonoBehaviour
             yield return new WaitForSeconds(2);
             if (canGiveEgg)
             {
-                if (isIncubatorWorking && PlayerEggStack.tempEgg > 0) //&& other.gameObject.GetComponent<PlayerEggStack>().hasStack
+                if (isIncubatorWorking && PlayerEggStack.tempEgg > 0)
                 {
-
                     var Egg = ObjectPooling.Instance.GetPoolObject(1);
                     Egg.transform.position = new Vector3(incubatorPoint.position.x, 1f + (float)EggsOnIncubator.Count / 2, incubatorPoint.position.z);
                     EggsOnIncubator.Enqueue(Egg);
@@ -83,7 +81,8 @@ public class WorkerIncubator : MonoBehaviour
                 }
             }
         }
-        if (isIncubatorWorking && PlayerEggStack.tempEgg > 0) //&& other.gameObject.GetComponent<PlayerEggStack>().hasStack
+
+        if (isIncubatorWorking && PlayerEggStack.tempEgg > 0)
         {
 
             var Egg = ObjectPooling.Instance.GetPoolObject(1);
@@ -97,11 +96,13 @@ public class WorkerIncubator : MonoBehaviour
                 isIncubatorWorking = false;
             }
         }
+
         else if (EggsOnIncubator.Count < incubatorEggLimit)
         {
             isIncubatorWorking = true;
         }
     }
+
     private void FixedUpdate()
     {
         if (tempEgg <= 0)

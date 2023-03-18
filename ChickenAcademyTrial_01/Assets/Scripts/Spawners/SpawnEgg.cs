@@ -5,9 +5,7 @@ using UnityEngine.PlayerLoop;
 
 public class SpawnEgg : MonoBehaviour
 {
-
     public Transform collectPoint;
-    //public PlayerCollision playerCollision;
 
     [SerializeField]
     int _stackHeight = 2;
@@ -25,6 +23,7 @@ public class SpawnEgg : MonoBehaviour
             Egg.transform.position = new Vector3(collectPoint.position.x + ((float)rowCount / 2), (eggCount % _stackHeight) / 2, collectPoint.position.z);
         }
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))

@@ -16,12 +16,12 @@ public class WormMovement : MonoBehaviour
     float colliderRange = 7f;
     public GameObject wormChild;
 
-
-    void Start()
+    private void Start()
     {
         anim = GetComponent<Animator>();
     }
-    void Update()
+
+    private void Update()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, colliderRange);
 
@@ -30,16 +30,17 @@ public class WormMovement : MonoBehaviour
             if (targets.gameObject.CompareTag("Player"))
             {
                 Debug.Log("entered");
-                //RotateToPlayer();
                 wormChild.transform.LookAt(targets.transform);
             }
         }
+
         if (anim)
         {
             anim.SetBool("PlayerLevelLower", _isPlayerLevelLower);
             anim.SetBool("PlayerLevelHigher", _isPlayerLevelHigher);
         }
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

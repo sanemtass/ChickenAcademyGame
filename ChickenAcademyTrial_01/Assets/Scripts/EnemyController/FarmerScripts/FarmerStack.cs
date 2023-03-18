@@ -13,6 +13,7 @@ public class FarmerStack : MonoBehaviour
     {
         anim = gameObject.GetComponent<Animator>();
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("WorkerChicken")&& !isWorkerStacked)
@@ -25,6 +26,7 @@ public class FarmerStack : MonoBehaviour
             workerChicken.transform.position = new Vector3(stackPoint.position.x, stackPoint.position.y, stackPoint.position.z);
             isWorkerStacked = true;        
         }
+
         if (other.gameObject.CompareTag("ExitPoint"))
         {
             var workerChicken = WorkerChicken.Dequeue();

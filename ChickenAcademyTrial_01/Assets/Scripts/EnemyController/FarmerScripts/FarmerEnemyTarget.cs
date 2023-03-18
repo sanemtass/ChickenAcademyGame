@@ -6,17 +6,18 @@ using Pathfinding;
 public class FarmerEnemyTarget : MonoBehaviour
 {
     private GameObject[] spawnedWorkerChicken;
-    //public GameObject obj;
     public Transform closestWorkerChicken;
     public bool targetedWorkerChicken = false;
     public AIDestinationSetter aiDes;
     public FarmerCollision farmerCollision;
     public GameObject exit;
-    void Start()
+
+    private void Start()
     {
         closestWorkerChicken = null;
         targetedWorkerChicken = false;
     }
+
     private void Update()
     {
         closestWorkerChicken = getClosestChicken();
@@ -28,6 +29,7 @@ public class FarmerEnemyTarget : MonoBehaviour
             Debug.Log("exit targetlandi");
         }
     }
+
     public Transform getClosestChicken()
     {
         spawnedWorkerChicken = GameObject.FindGameObjectsWithTag("WorkerChicken");

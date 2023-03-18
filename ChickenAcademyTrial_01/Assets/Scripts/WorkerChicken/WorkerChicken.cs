@@ -28,6 +28,7 @@ public class WorkerChicken : MonoBehaviour
     {
         destinationSetter.target = target;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Worm"))
@@ -39,6 +40,7 @@ public class WorkerChicken : MonoBehaviour
             wormCount++;
             other.gameObject.SetActive(false);
         }
+
         if (other.gameObject.CompareTag("Mother"))
         {
             getWorm = false;
@@ -47,6 +49,7 @@ public class WorkerChicken : MonoBehaviour
             CoinSpawner.Instance.CoinSpawn();
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Worm"))

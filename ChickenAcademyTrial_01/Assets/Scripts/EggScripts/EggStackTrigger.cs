@@ -9,7 +9,6 @@ public class EggStackTrigger : MonoBehaviour
         if (other.tag == "Egg")
         {
             EggStackManager.instance.PickUp(other.gameObject, true, "Egg");
-            
         }
     }
 }
